@@ -17,3 +17,7 @@ content-type: application/json
     "correo": "sephitor1@gmail.com",
     "password" : "123456"
 }
+
+### LISTAR TODOS LOS USUARIOS
+GET http://localhost:8000/api/usuarios HTTP/1.1
+x-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MWExNjhlOGI5ZDRkM2Q1ZmUyMGRhMDMiLCJlbWFpbCI6InNlcGhpdG9yMUBnbWFpbC5jb20iLCJmaXJzdG5hbWUiOiJGcmFuY2lzY28iLCJsYXN0bmFtZSI6IkJvaXNpZXIiLCJpYXQiOjE2Mzc5Njk1NjIsImV4cCI6MTYzNzk3Njc2Mn0.SgBaGAFmiPZRsdLVrmRYZq5D1GVFi6AC6dDBza6UQhw

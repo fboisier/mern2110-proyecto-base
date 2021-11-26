@@ -43,3 +43,16 @@ module.exports.loginUsuario = async (request, response) => {
         response.status(400).json(error);
     }
 }
+
+
+module.exports.todosLosUsuarios = async (req, res) => {
+    try {
+
+        console.log("ESTO VIENE DEL TOKEN PASADO AL REQUEST CORREO:", req.email);
+
+        const usuarios = await Usuario.find();
+        res.json(usuarios);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+}
