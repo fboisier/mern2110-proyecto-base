@@ -1,0 +1,19 @@
+### CREAR USUARIO
+POST http://localhost:8000/api/auth/register HTTP/1.1
+content-type: application/json
+
+{
+    "nombre": "Francisco",
+    "apellido": "Boisier",
+    "correo": "sephitor1@gmail.com",
+    "password" : "123456"
+}
+
+### LOGIN DEL USUARIO
+POST http://localhost:8000/api/auth/login HTTP/1.1
+content-type: application/json
+
+{
+    "correo": "sephitor1@gmail.com",
+    "password" : "123456"
+}
