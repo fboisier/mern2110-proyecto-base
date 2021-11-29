@@ -5,7 +5,7 @@ content-type: application/json
 {
     "nombre": "Francisco",
     "apellido": "Boisier",
-    "correo": "sephitor1@gmail.com",
+    "correo": "sephitor2@gmail.com",
     "password" : "123456"
 }
 
@@ -20,4 +20,4 @@ content-type: application/json
 
 ### LISTAR TODOS LOS USUARIOS
 GET http://localhost:8000/api/usuarios HTTP/1.1
-x-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MWExNjhlOGI5ZDRkM2Q1ZmUyMGRhMDMiLCJlbWFpbCI6InNlcGhpdG9yMUBnbWFpbC5jb20iLCJmaXJzdG5hbWUiOiJGcmFuY2lzY28iLCJsYXN0bmFtZSI6IkJvaXNpZXIiLCJpYXQiOjE2Mzc5Njk1NjIsImV4cCI6MTYzNzk3Njc2Mn0.SgBaGAFmiPZRsdLVrmRYZq5D1GVFi6AC6dDBza6UQhw
+x-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MWE1NGY4NDVhMDJjNmFmODFmNmQxZmMiLCJlbWFpbCI6InNlcGhpdG9yMkBnbWFpbC5jb20iLCJmaXJzdG5hbWUiOiJGcmFuY2lzY28iLCJsYXN0bmFtZSI6IkJvaXNpZXIiLCJpYXQiOjE2MzgyMjM3NDgsImV4cCI6MTYzODIzMDk0OH0.1GNwZ5H5mALIbFIgWz2Ts0gLCaDq9tvnJOIovCTRLhM
