@@ -1,13 +1,14 @@
 
+import { UsuarioProvider } from './context/UsuarioContext';
 import { AppRouter } from './routers/AppRouter';
 
 
 const App = () => {
   return (
 
-    
-      <AppRouter/>
-
+    <UsuarioProvider>
+      <AppRouter />
+    </UsuarioProvider>
 
   );
 }

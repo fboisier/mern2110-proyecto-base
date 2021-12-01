@@ -1,14 +1,36 @@
-import React from 'react'
-import { Collapse, Nav, Navbar, NavbarBrand, NavbarText, NavbarToggler, NavItem, NavLink } from 'reactstrap'
+import React, { useContext, useEffect } from 'react'
+import { Button, Collapse, Nav, Navbar, NavbarBrand, NavbarText, NavbarToggler, NavItem, NavLink } from 'reactstrap'
 import { LinkContainer } from 'react-router-bootstrap'
+import { UsuarioContext } from '../context/UsuarioContext';
+import { useNavigate } from 'react-router';
 
 export const Menu = () => {
+
+    const {usuario, setUsuario} = useContext(UsuarioContext);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+    
+        if(!usuario){
+            navigate('/login');
+        }
+
+    }, [navigate,usuario])
+
+
+    const logOut = () => {
+        localStorage.removeItem('usuario');
+        setUsuario(null);
+        navigate("/login");
+    }
+
     return (
 
         <Navbar
             color="vino"
             expand="md"
             dark
+            full
         >
             <LinkContainer to="/">
                 <NavbarBrand>
@@ -29,16 +51,16 @@ export const Menu = () => {
                     </LinkContainer>
                     </NavItem>
                     <NavItem>
-                    <LinkContainer to="/login">
+                    <LinkContainer to="/usuarios">
                         <NavLink>
-                            Login
+                            Usuarios
                         </NavLink>
                     </LinkContainer>
                     </NavItem>
 
                 </Nav>
                 <NavbarText>
-                    SALIR
+                    Bienvenido/a {usuario?.nombre} - <Button onClick={logOut} color="light">SALIR</Button>
                 </NavbarText>
             </Collapse>
         </Navbar>

@@ -1,24 +1,102 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Button, Col, Container, Form, FormGroup, Input, Label, Row } from 'reactstrap'
 import { useForm } from '../hooks/useForm';
+import Swal from 'sweetalert2'
+import { axiosSinToken } from '../helpers/axios';
+import { UsuarioContext } from '../context/UsuarioContext';
+import { useNavigate } from 'react-router-dom';
+
 
 export const LoginRegisterScreen = () => {
+
+    const {usuario, setUsuario} = useContext(UsuarioContext);
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+    
+        if(usuario){
+            navigate('/');
+        }
+
+    }, [navigate,usuario])
 
     const initialState = {
         nombre : '',
         apellido : '',
-        email : '',
+        correo : '',
         password : '',
         cpassword: ''
     }
 
     const [data, handleInputChange] = useForm(initialState);
+    const [login, handleInputChangeLogin] = useForm({correo: '', password:''});
 
-    const {nombre, apellido, email, password, cpassword} = data;
+    const {nombre, apellido, correo, password, cpassword} = data;
+
+    const handleSubmitLogin = (e) => {
+        e.preventDefault();
+        axiosSinToken("auth/login", login, "POST").then(res => {
+            console.log(res);
+            Swal.fire({
+                icon: 'success',
+                title: 'Bienvenido al Sistema',
+                text: 'Logeado correctamente'
+            });
+            
+            setUsuario(res.data);
+            localStorage.setItem("usuario", JSON.stringify(res.data));
+            // ya que el usuario se creo y está en el contexto, lo enviamos al inicio
+            navigate("/");
+
+
+        }).catch(err => {
+            console.log(err.response);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: err.response.data.message
+            })
+        });
+    }
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(data);
+        
+        if(password !== cpassword){
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Las contraseñas no coinciden'
+            })
+        }else{
+            // LLAMAR A AXIOS PARA CREAR EL USUARIO
+            axiosSinToken("auth/register", data, "POST").then(res => {
+                console.log(res);
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Registro exitoso',
+                    text: 'Ahora puedes iniciar sesión'
+                });
+                
+                setUsuario(res.data);
+                localStorage.setItem("usuario", JSON.stringify(res.data));
+                // ya que el usuario se creo y está en el contexto, lo enviamos al inicio
+                navigate("/");
+
+
+            }).catch(err => {
+                console.log(err.response);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: err.response.data.message
+                })
+            });
+
+        }
+
     }
 
     return (
@@ -66,11 +144,11 @@ export const LoginRegisterScreen = () => {
                             </Label>
                             <Input
                                 id="email"
-                                name="email"
+                                name="correo"
                                 placeholder="Ingresar Email"
                                 type="email"
                                 required
-                                value={email}
+                                value={correo}
                                 onChange={handleInputChange}
                             />
                         </FormGroup>
@@ -109,6 +187,40 @@ export const LoginRegisterScreen = () => {
                 </Col>
                 <Col>
                     <h1>Login</h1>
+
+                    <Form onSubmit={handleSubmitLogin}>
+                        <FormGroup>
+                            <Label for="email">
+                                Email
+                            </Label>
+                            <Input
+                                id="email"
+                                name="correo"
+                                placeholder="Ingresar Email"
+                                type="email"
+                                required
+                                value={login.correo}
+                                onChange={handleInputChangeLogin}
+                            />
+                        </FormGroup>
+                        <FormGroup>
+                            <Label for="password">
+                                Contraseña
+                            </Label>
+                            <Input
+                                id="password"
+                                name="password"
+                                placeholder="Ingresar contraseña"
+                                type="password"
+                                required
+                                value={login.password}
+                                onChange={handleInputChangeLogin}
+                            />
+                        </FormGroup>
+                        <Button>
+                            Ingresar
+                        </Button>
+                    </Form>
                 </Col>
             </Row>
 
