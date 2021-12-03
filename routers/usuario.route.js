@@ -6,4 +6,5 @@ module.exports = function(app){
     app.post('/api/auth/login', UsuarioController.loginUsuario);
 
     app.get('/api/usuarios', validarJWT,  UsuarioController.todosLosUsuarios);
+    app.get('/api/usuarios/propio', validarJWT,  UsuarioController.todosLosUsuariosporUsuario);
 }

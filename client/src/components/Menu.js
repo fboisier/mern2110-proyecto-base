@@ -58,6 +58,14 @@ export const Menu = () => {
                     </LinkContainer>
                     </NavItem>
 
+                    <NavItem>
+                    <LinkContainer to="/usuarios/propio">
+                        <NavLink>
+                            Usuarios Propios
+                        </NavLink>
+                    </LinkContainer>
+                    </NavItem>
+
                 </Nav>
                 <NavbarText>
                     Bienvenido/a {usuario?.nombre} - <Button onClick={logOut} color="light">SALIR</Button>

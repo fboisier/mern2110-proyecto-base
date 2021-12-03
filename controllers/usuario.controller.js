@@ -56,3 +56,17 @@ module.exports.todosLosUsuarios = async (req, res) => {
         res.status(500).json(error);
     }
 }
+
+
+module.exports.todosLosUsuariosporUsuario = async (req, res) => {
+    try {
+
+        console.log("ESTO VIENE DEL TOKEN PASADO AL REQUEST CORREO:", req.email);
+        console.log("ESTO ES ALGO NUEVO")
+
+        const usuarios = await Usuario.find({_id: req.uid});
+        res.json(usuarios);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+}
