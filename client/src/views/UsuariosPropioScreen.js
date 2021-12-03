@@ -32,7 +32,7 @@ export const UsuariosPropioScreen = () => {
 
             
 
-            <h1>Usuarios PROPIOS</h1>
+            <h1>Usuarios Propio y Modificado</h1>
             <Table striped>
                 <thead>
                     <tr>

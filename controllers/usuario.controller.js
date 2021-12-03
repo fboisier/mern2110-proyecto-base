@@ -62,7 +62,7 @@ module.exports.todosLosUsuariosporUsuario = async (req, res) => {
     try {
 
         console.log("ESTO VIENE DEL TOKEN PASADO AL REQUEST CORREO:", req.email);
-        console.log("ESTO ES ALGO NUEVO")
+        console.log("ESTO ES ALGO NUEVO MODIFICADO")
 
         const usuarios = await Usuario.find({_id: req.uid});
         res.json(usuarios);
